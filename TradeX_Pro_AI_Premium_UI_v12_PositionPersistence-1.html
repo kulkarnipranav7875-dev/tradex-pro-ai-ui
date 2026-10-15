@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070b12">
+<title>TradeX Pro AI — Terminal Preview</title>
+<style>
+:root{--bg:#070a10;--panel:#0d131d;--panel2:#111b29;--line:#202d3e;--muted:#8493a8;--text:#edf3fb;--green:#27dda0;--red:#ff5b70;--blue:#609bff;--violet:#a38bff;--gold:#ffc66e}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}body{padding-bottom:86px}.app{max-width:1180px;margin:auto;padding:16px 16px 28px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.brand{display:flex;align-items:center;gap:10px}.logo{width:40px;height:40px;border-radius:13px;background:linear-gradient(140deg,#4d8cff,#8b6bff);display:grid;place-items:center;font-weight:900;box-shadow:0 8px 28px #4d8cff30}.brand h1{font-size:17px;letter-spacing:.2px;margin:0}.brand small{display:block;color:var(--muted);font-size:11px;margin-top:3px}.topright{display:flex;align-items:center;gap:8px}.pill{border:1px solid var(--line);background:#0c131e;border-radius:999px;padding:8px 11px;color:#aab7ca;font-size:11px;white-space:nowrap}.live-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gold);margin-right:5px}.iconbtn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:11px;padding:10px 12px}.notice{font-size:11px;color:#e9c786;background:#241d12;border:1px solid #594321;border-radius:10px;padding:9px 12px;margin-bottom:14px;line-height:1.5}.indexgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:14px}.index{background:linear-gradient(145deg,#111d2b,#0c131d);border:1px solid var(--line);border-radius:15px;padding:14px;min-width:0;cursor:pointer}.index.active{border-color:#5e94ff;box-shadow:inset 0 0 0 1px #5e94ff26}.index .label{font-size:11px;color:#9aaac0}.index .value{font-size:21px;font-weight:750;letter-spacing:-.5px;margin:8px 0 4px}.change{font-size:11px}.up{color:var(--green)}.down{color:var(--red)}.index-foot{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:10px;color:var(--muted)}.layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(290px,1fr);gap:14px;align-items:start}.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;min-width:0}.panelhead{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px 16px;border-bottom:1px solid var(--line)}.panelhead h2{font-size:14px;margin:0}.sub{color:var(--muted);font-size:10px;margin-top:4px}.headright{display:flex;gap:6px;align-items:center}.select,.smallbtn{background:#111c2a;border:1px solid #28364a;border-radius:8px;color:#dce6f4;padding:7px 9px;font-size:11px}.charttop{display:flex;justify-content:space-between;align-items:center;padding:13px 16px 2px;gap:12px}.pricebig{font-size:25px;font-weight:800;letter-spacing:-.6px}.muted{color:var(--muted)}.chartwrap{height:290px;padding:8px 10px 4px;position:relative}.chartwrap canvas{width:100%;height:100%;display:block}.indicators{display:flex;gap:7px;flex-wrap:wrap;padding:4px 16px 14px}.tag{border:1px solid #2a384a;background:#101a27;color:#aab9cc;border-radius:7px;padding:6px 9px;font-size:10px}.tag.on{border-color:#477cbd;color:#91c5ff;background:#12253a}.chartfooter{display:flex;justify-content:space-between;gap:8px;padding:10px 16px;border-top:1px solid var(--line);font-size:10px;color:var(--muted)}.sidecol{display:grid;gap:14px}.signal{padding:14px 15px}.signalbadge{display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border-radius:8px;background:#0d2a22;color:var(--green);font-size:11px;font-weight:700}.signalbadge.wait{background:#2b2416;color:var(--gold)}.signal h3{margin:11px 0 5px;font-size:17px}.signal p{margin:0;color:var(--muted);font-size:11px;line-height:1.55}.scoreline{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:11px}.bar{height:5px;border-radius:9px;background:#202b3b;overflow:hidden;margin-top:8px}.bar span{display:block;height:100%;width:76%;background:linear-gradient(90deg,#388bff,#27dda0);border-radius:9px}.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:13px}.level{background:#101a27;border:1px solid #202f42;border-radius:10px;padding:9px}.level small{font-size:9px;color:var(--muted);display:block;margin-bottom:5px}.level b{font-size:12px}.actions{display:flex;gap:8px;margin-top:13px}.btn{flex:1;border:0;border-radius:10px;padding:11px 12px;font-size:12px;font-weight:750;cursor:pointer}.btn.buy{background:var(--green);color:#06251b}.btn.sell{background:var(--red);color:#2b0910}.btn.secondary{background:#182538;color:#dce7f7;border:1px solid #2a3c53}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap;font-size:11px}th{color:#8798ae;font-size:10px;font-weight:600;text-align:right;padding:11px 12px;border-bottom:1px solid var(--line)}th:first-child,td:first-child{text-align:left}td{text-align:right;padding:12px;border-bottom:1px solid #182433}tr:last-child td{border-bottom:0}.strike{font-weight:750}.ce{color:var(--green)}.pe{color:var(--red)}.watchrow{display:flex;align-items:center;justify-content:space-between;padding:12px 15px;border-bottom:1px solid #182433}.watchrow:last-child{border:0}.symbol{font-size:12px;font-weight:700}.exchange{font-size:9px;color:var(--muted);margin-top:4px}.right{text-align:right}.metricgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:13px}.metric{background:#101a27;border-radius:11px;padding:11px}.metric small{font-size:10px;color:var(--muted)}.metric b{display:block;font-size:15px;margin-top:7px}.empty{padding:28px 16px;text-align:center;color:var(--muted);font-size:12px}.tabs{position:fixed;z-index:20;bottom:0;left:0;right:0;background:#0b111bF5;backdrop-filter:blur(18px);border-top:1px solid #263347;display:flex;justify-content:center;padding:8px max(8px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom));gap:4px}.tab{border:0;background:transparent;color:#8190a5;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;padding:7px 16px;min-width:70px;border-radius:11px;font-size:10px;cursor:pointer}.tab .ico{font-size:17px}.tab.active{background:#162640;color:#8ebaff}.page{display:none}.page.active{display:block}.sectiontitle{font-size:17px;margin:8px 0 13px}.search{width:100%;background:#0a111b;border:1px solid var(--line);border-radius:10px;padding:11px 12px;color:var(--text);outline:none;margin:12px 0}.orderform{padding:15px;display:grid;gap:11px}.field label{display:block;font-size:10px;color:var(--muted);margin-bottom:6px}.field input,.field select{width:100%;background:#0a111b;border:1px solid #29384c;border-radius:9px;padding:11px;color:var(--text);outline:none}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.toast{position:fixed;bottom:92px;left:50%;transform:translateX(-50%);z-index:40;background:#eaf4ff;color:#0a1728;border-radius:10px;padding:11px 15px;font-size:12px;box-shadow:0 10px 35px #0008;display:none;max-width:90vw}.btn:hover{filter:brightness(1.08)}.metricgrid{grid-template-columns:repeat(3,minmax(0,1fr))}.footerhint{text-align:center;color:#5f7087;font-size:10px;padding:18px 0 0}
+@media(max-width:760px){.app{padding:12px 11px 20px}.brand h1{font-size:15px}.topright .pill{display:none}.indexgrid{gap:7px}.index{padding:11px 9px}.index .value{font-size:17px}.layout{grid-template-columns:1fr}.chartwrap{height:265px}.twocol{grid-template-columns:1fr}.tab{min-width:0;flex:1;padding:7px 3px}.tab .ico{font-size:16px}.tabs{gap:1px}.pricebig{font-size:23px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+ <div class="brand"><div class="logo">TX</div><div><h1>TradeX <span style="color:#83aaff">Pro AI</span></h1><small>MARKET INTELLIGENCE TERMINAL</small></div></div>
+ <div class="topright"><span class="pill"><span class="live-dot"></span>DEMO MODE</span><button class="iconbtn" id="refreshBtn" aria-label="Refresh">↻</button></div>
+</header>
+<div class="notice">⚠ Preview uses simulated market values. It is not connected to live Upstox data. Paper trades are virtual only.</div>
+<div class="indexgrid" id="indexGrid">
+ <div class="index active" data-index="NIFTY 50"><div class="label">NIFTY 50 · NSE</div><div class="value">23,418.60</div><div class="change up">▲ 0.62% &nbsp; +144.35</div><div class="index-foot"><span>Market overview</span><span>↗</span></div></div>
+ <div class="index" data-index="BANKNIFTY"><div class="label">BANKNIFTY · NSE</div><div class="value">51,284.25</div><div class="change down">▼ 0.18% &nbsp; −92.10</div><div class="index-foot"><span>Market overview</span><span>↘</span></div></div>
+ <div class="index" data-index="SENSEX"><div class="label">SENSEX · BSE</div><div class="value">77,612.40</div><div class="change up">▲ 0.31% &nbsp; +239.20</div><div class="index-foot"><span>Market overview</span><span>↗</span></div></div>
+</div>
+
+<section id="homePage" class="page active">
+<div class="layout">
+ <div class="panel">
+  <div class="panelhead"><div><h2 id="chartTitle">NIFTY 50 <span class="muted">/ Index Chart</span></h2><div class="sub">Candlestick · simulated preview data</div></div><div class="headright"><select class="select" id="timeframe"><option>1m</option><option>3m</option><option selected>5m</option><option>15m</option><option>30m</option><option>1h</option><option>1D</option></select><button class="smallbtn" id="resetChart">Reset</button></div></div>
+  <div class="charttop"><div><div class="pricebig" id="chartPrice">23,418.60</div><div class="change up" id="chartChange">+144.35 (+0.62%)</div></div><div class="right"><div class="muted" style="font-size:10px">SESSION</div><b style="font-size:12px">09:15–15:30 IST</b></div></div>
+  <div class="chartwrap"><canvas id="chart" aria-label="Simulated candlestick chart"></canvas></div>
+  <div class="indicators"><button class="tag on" data-ind="EMA 9">EMA 9</button><button class="tag on" data-ind="EMA 21">EMA 21</button><button class="tag on" data-ind="VWAP">VWAP</button><button class="tag" data-ind="RSI">RSI</button><button class="tag" data-ind="MACD">MACD</button><button class="tag on" data-ind="S/R">Support–Resistance</button></div>
+  <div class="chartfooter"><span>Drag/scroll chart area to explore preview</span><span id="chartStatus">5m · 50 candles</span></div>
+ </div>
+ <div class="sidecol">
+  <div class="panel"><div class="panelhead"><div><h2>AI Setup Scanner</h2><div class="sub">Rule-based preview · not a prediction guarantee</div></div><span class="signalbadge wait" id="signalBadge">● WATCH</span></div>
+   <div class="signal"><h3 id="setupTitle">Breakout Retest Watch</h3><p id="setupDesc">Price is near a simulated resistance zone. Wait for candle close and volume confirmation before considering a setup.</p><div class="scoreline"><span class="muted">Setup confluence score</span><b id="score">76/100</b></div><div class="bar"><span id="scoreBar"></span></div><div class="levels"><div class="level"><small>ENTRY ZONE</small><b id="entryLevel">23,425</b></div><div class="level"><small>STOP-LOSS</small><b class="down" id="slLevel">23,300</b></div><div class="level"><small>TARGET 1</small><b class="up" id="targetLevel">23,600</b></div></div><div class="actions"><button class="btn buy" id="paperBuy">＋ Paper Buy</button><button class="btn secondary" id="viewOptions">Options Chain ↗</button></div></div>
+  </div>
+  <div class="panel"><div class="panelhead"><div><h2>Market Snapshot</h2><div class="sub">Reference levels · demo</div></div></div><div class="metricgrid"><div class="metric"><small>Day High</small><b>23,512</b></div><div class="metric"><small>Day Low</small><b>23,201</b></div><div class="metric"><small>VWAP</small><b>23,390</b></div></div></div>
+ </div>
+</div>
+<div class="twocol">
+ <div class="panel"><div class="panelhead"><div><h2>Options Chain</h2><div class="sub">Sample strikes and premiums · demo</div></div><select class="select" id="optionType"><option>Both CE / PE</option><option>Calls (CE)</option><option>Puts (PE)</option></select></div><div class="tablewrap"><table><thead><tr><th>CE Premium</th><th>CE OI</th><th>Strike</th><th>PE OI</th><th>PE Premium</th></tr></thead><tbody id="optionRows"></tbody></table></div></div>
+ <div class="panel"><div class="panelhead"><div><h2>Watchlist</h2><div class="sub">Quick market view</div></div><button class="smallbtn" id="addWatch">＋ Add</button></div><div class="watchrow"><div><div class="symbol">RELIANCE</div><div class="exchange">NSE · Energy</div></div><div class="right"><div>1,428.50</div><div class="change up">+0.44%</div></div></div><div class="watchrow"><div><div class="symbol">HDFCBANK</div><div class="exchange">NSE · Banking</div></div><div class="right"><div>1,948.20</div><div class="change down">−0.21%</div></div></div><div class="watchrow"><div><div class="symbol">INFY</div><div class="exchange">NSE · IT</div></div><div class="right"><div>1,612.75</div><div class="change up">+0.83%</div></div></div><div class="watchrow"><div><div class="symbol">TCS</div><div class="exchange">NSE · IT</div></div><div class="right"><div>3,842.10</div><div class="change up">+0.16%</div></div></div></div>
+</div>
+</section>
+
+
+<section id="strategyLab" class="panel" style="margin-top:14px">
+ <div class="panelhead"><div><h2>Strategy Lab <span style="color:#8ebaff">· Rule-based scanner</span></h2><div class="sub">EMA crossover + momentum confirmation · educational demo, not a prediction</div></div><span class="pill">RULE ENGINE</span></div>
+ <div class="orderform">
+  <div class="formgrid">
+   <div class="field"><label>Strategy</label><select id="btStrategy"><option value="ema">EMA 9 / EMA 21 crossover</option><option value="momentum">Momentum breakout</option></select></div>
+   <div class="field"><label>Backtest timeframe</label><select id="btTimeframe"><option>1m</option><option>3m</option><option selected>5m</option><option>15m</option><option>30m</option><option>1h</option></select></div>
+   <div class="field"><label>Starting capital (₹)</label><input id="btCapital" type="number" min="1000" value="100000"></div>
+   <div class="field"><label>Risk per trade (%)</label><input id="btRisk" type="number" min="0.25" max="2" step="0.25" value="1"></div>
+  </div>
+  <div class="notice" style="margin:0">Backtest runs on the chart's simulated candles in this preview. It does not use historical exchange data and results do not predict future returns.</div>
+  <button class="btn buy" id="runBacktest">▶ Run Backtest</button>
+ </div>
+ <div id="btResults" style="display:none">
+  <div class="metricgrid">
+   <div class="metric"><small>Total trades</small><b id="btTrades">—</b></div>
+   <div class="metric"><small>Win rate</small><b id="btWin">—</b></div>
+   <div class="metric"><small>Net P&L</small><b id="btPnl">—</b></div>
+   <div class="metric"><small>Profit factor</small><b id="btPF">—</b></div>
+   <div class="metric"><small>Max drawdown</small><b id="btDD">—</b></div>
+   <div class="metric"><small>Ending capital</small><b id="btEnd">—</b></div>
+  </div>
+  <div class="panelhead"><div><h2>Trade-by-trade report</h2><div class="sub">Fees/slippage are not included in this demo</div></div></div>
+  <div id="btTable"></div>
+ </div>
+</section>
+
+<section id="optionsEngine" class="panel" style="margin-top:14px">
+ <div class="panelhead"><div><h2>Options Strategy Engine <span style="color:#8ebaff">· CE / PE</span></h2><div class="sub">Rule-based setup planner · simulated premiums, not live market quotes</div></div><span class="pill">PAPER ONLY</span></div>
+ <div class="orderform">
+  <div class="formgrid">
+   <div class="field"><label>Underlying</label><select id="optUnderlying"><option>NIFTY 50</option><option>BANKNIFTY</option></select></div>
+   <div class="field"><label>Option type</label><select id="optType"><option value="CE">CALL (CE)</option><option value="PE">PUT (PE)</option></select></div>
+   <div class="field"><label>Expiry</label><select id="optExpiry"><option value="near">Nearest expiry (demo)</option><option value="next">Next expiry (demo)</option></select></div>
+   <div class="field"><label>Strike price</label><select id="optStrike"></select></div>
+   <div class="field"><label>Option premium (₹)</label><input id="optPremium" type="number" min="0.05" step="0.05" value="120"></div>
+   <div class="field"><label>Quantity (units)</label><input id="optQty" type="number" min="1" step="1" value="65"></div>
+  </div>
+  <div class="actions"><button class="btn buy" id="analyzeOption">✦ Analyze Setup</button><button class="btn secondary" id="resetOption">Reset</button></div>
+  <div class="notice" style="margin:12px 0 0">Premium and strike values are illustrative only. Use verified live option-chain data before making any decision. No broker orders are placed.</div>
+ </div>
+ <div id="optAnalysis" style="display:none">
+  <div class="metricgrid">
+   <div class="metric"><small>Setup score</small><b id="optScore">—</b></div>
+   <div class="metric"><small>Rule bias</small><b id="optBias">—</b></div>
+   <div class="metric"><small>Risk per unit</small><b id="optRiskUnit">—</b></div>
+  </div>
+  <div class="levels" style="margin-top:12px">
+   <div class="level"><small>ENTRY PREMIUM</small><b id="optEntry">—</b></div>
+   <div class="level"><small>STOP-LOSS · max 15%</small><b class="down" id="optSL">—</b></div>
+   <div class="level"><small>TARGET 1 · 1.5R</small><b class="up" id="optTarget">—</b></div>
+  </div>
+  <div class="metricgrid" style="margin-top:12px">
+   <div class="metric"><small>Max planned loss</small><b id="optMaxLoss">—</b></div>
+   <div class="metric"><small>Target profit</small><b id="optTargetProfit">—</b></div>
+   <div class="metric"><small>Premium score</small><b id="optPremiumScore">—</b></div>
+  </div>
+  <div class="panel" style="margin-top:12px;padding:14px;background:#0b1420;border:1px solid #26384c;border-radius:14px">
+   <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap"><div><b>Trend Continuation Manager</b><div class="sub">Trend continues → show next targets and trail SL</div></div><label style="display:flex;gap:8px;align-items:center;font-size:13px"><input id="trailEnabled" type="checkbox" checked style="width:18px;height:18px;accent-color:#27d6a0"> Enable trailing SL</label></div>
+   <div class="metricgrid" style="margin-top:12px">
+    <div class="metric"><small>TARGET 2 · 2.5R</small><b class="up" id="optTarget2">—</b></div>
+    <div class="metric"><small>TARGET 3 · 3.5R</small><b class="up" id="optTarget3">—</b></div>
+    <div class="metric"><small>TRAIL STARTS AT</small><b id="trailStart">—</b></div>
+   </div>
+   <div class="field" style="margin-top:12px"><label for="trailGap">Trailing gap (% of premium)</label><select id="trailGap" class="select"><option value="3">Tight · 3%</option><option value="5" selected>Balanced · 5%</option><option value="8">Wide · 8%</option></select></div>
+   <div class="notice" style="margin:12px 0 0">Rule: after Target 1, the displayed trailing SL moves upward as the option premium makes new highs. It never moves backward. Targets are planning levels, not guaranteed fills.</div>
+   <div class="metricgrid" style="margin-top:12px"><div class="metric"><small>Initial SL</small><b class="down" id="trailInitial">—</b></div><div class="metric"><small>Trail SL after T1*</small><b id="trailAfter">—</b></div><div class="metric"><small>Next action</small><b id="trailAction">—</b></div></div>
+  </div>
+  <div class="notice" id="optReason" style="margin-top:12px"></div>
+  <button class="btn buy" id="optPaperTrade" style="margin-top:12px">＋ Add to Paper Orders</button>
+ </div>
+</section>
+<section id="mylistPage" class="page"><h2 class="sectiontitle">My List <span class="muted" style="font-size:12px">/ Watchlist</span></h2><div class="panel"><div class="panelhead"><div><h2>Saved Symbols</h2><div class="sub">Demo watchlist saved in this preview</div></div><button class="smallbtn" id="addWatch2">＋ Add Symbol</button></div><input class="search" id="watchSearch" placeholder="Search symbol or index…" style="width:calc(100% - 24px);margin:12px"><div id="watchFull"></div></div></section>
+
+<section id="ordersPage" class="page"><h2 class="sectiontitle">Orders <span class="muted" style="font-size:12px">/ Paper trading</span></h2><div class="panel"><div class="panelhead"><div><h2>Order Book</h2><div class="sub">Virtual orders only · no broker orders are placed</div></div><select class="select" id="orderFilter"><option>All Orders</option><option>Open</option><option>Closed</option></select></div><div id="ordersTable"></div></div></section>
+
+<section id="positionPage" class="page"><h2 class="sectiontitle">Position <span class="muted" style="font-size:12px">/ Performance</span></h2><div class="panel"><div class="panelhead"><div><h2>Today's P&L</h2><div class="sub">Calculated from virtual trades recorded in this browser</div></div><button class="smallbtn" id="resetTrades">Reset demo trades</button></div><div class="metricgrid"><div class="metric"><small>Realised P&L</small><b id="realisedPnl">₹0.00</b></div><div class="metric"><small>Open positions</small><b id="openCount">0</b></div><div class="metric"><small>Win rate</small><b id="winRate">—</b></div></div><div class="panel" style="margin:14px 0;padding:14px;background:#0b1420;border:1px solid #26384c;border-radius:14px"><div class="panelhead" style="padding:0 0 10px"><div><h2>Paper Position Manager</h2><div class="sub">Target-hit detection · trailing SL · simulated exit alerts</div></div><span class="pill">MANUAL DEMO</span></div><div class="notice" style="margin:0 0 12px">Choose an open option position, enter its latest simulated premium, then update. This does not fetch live quotes or place orders.</div><div class="field"><label for="manageTrade">Open option position</label><select id="manageTrade" class="select"><option value="">No open option positions</option></select></div><div class="formgrid" style="margin-top:10px"><div class="field"><label for="managePremium">Current premium (₹)</label><input id="managePremium" type="number" min="0.05" step="0.05" value="120"></div><div class="field"><label for="manageTrailGap">Trailing gap</label><select id="manageTrailGap" class="select"><option value="3">Tight · 3%</option><option value="5" selected>Balanced · 5%</option><option value="8">Wide · 8%</option></select></div></div><button class="btn buy" id="updatePremium" style="margin-top:12px">↻ Update Premium & Manage SL</button><div id="managerResult" class="metricgrid" style="margin-top:12px"></div><div id="managerAlert" class="notice" style="margin-top:12px;display:none" role="status" aria-live="polite"></div><div class="sub" style="margin-top:8px">Milestones and exit alerts update only when you manually enter a simulated premium. No live quote monitoring.</div></div><div id="positionsTable"></div><div class="panelhead"><div><h2>P&L History</h2><div class="sub">Cumulative realised P&amp;L · closed paper trades</div></div><span class="pill">MONTHLY</span></div><div class="chartwrap" style="height:190px"><canvas id="pnlChart"></canvas></div></div></section>
+
+<section id="holdingsPage" class="page"><h2 class="sectiontitle">Holdings <span class="muted" style="font-size:12px">/ Portfolio</span></h2><div class="panel"><div class="panelhead"><div><h2>Portfolio Overview</h2><div class="sub">Virtual portfolio — no real investments</div></div><span class="pill">DEMO</span></div><div class="metricgrid"><div class="metric"><small>Invested value</small><b>₹0.00</b></div><div class="metric"><small>Current value</small><b>₹0.00</b></div><div class="metric"><small>Total P&L</small><b id="holdingPnl">₹0.00</b></div></div><div class="empty">No holdings yet.<br><span style="font-size:10px">Paper-trading stock holdings can be added in a future build step.</span></div></div></section>
+
+<section id="paperPage" class="page"><h2 class="sectiontitle">Create Paper Trade</h2><div class="panel"><div class="panelhead"><div><h2>Virtual order ticket</h2><div class="sub">Manual signal workflow · does not send broker orders</div></div></div><div class="orderform"><div class="field"><label>Instrument</label><select id="tradeInstrument"><option>NIFTY 50</option><option>BANKNIFTY</option><option>SENSEX</option><option>NIFTY CE</option><option>NIFTY PE</option><option>BANKNIFTY CE</option><option>BANKNIFTY PE</option></select></div><div class="formgrid"><div class="field"><label>Side</label><select id="tradeSide"><option>BUY</option><option>SELL</option></select></div><div class="field"><label>Quantity / Lots</label><input id="tradeQty" type="number" min="1" value="1"></div><div class="field"><label>Entry price (₹)</label><input id="tradeEntry" type="number" min="0.05" step="0.05" value="120"></div><div class="field"><label>Stop-loss (₹)</label><input id="tradeSL" type="number" min="0.05" step="0.05" value="102"></div><div class="field"><label>Target (₹)</label><input id="tradeTarget" type="number" min="0.05" step="0.05" value="150"></div><div class="field"><label>Risk / reward</label><input id="riskReward" readonly value="1 : 1.67"></div></div><div class="notice" style="margin:0">For options, this preview validates the stop-loss as a percentage of the entered premium. Confirm lot sizes and contract specifications from the exchange/broker before using real data.</div><button class="btn buy" id="createTrade">Create Virtual Order</button></div></div></section>
+<div class="footerhint">TradeX Pro AI · UI / interaction preview · simulated data only</div>
+</div>
+
+<nav class="tabs" aria-label="Main navigation">
+ <button class="tab active" data-page="homePage"><span class="ico">⌂</span>Home</button>
+ <button class="tab" data-page="mylistPage"><span class="ico">☆</span>My List</button>
+ <button class="tab" data-page="ordersPage"><span class="ico">▤</span>Orders</button>
+ <button class="tab" data-page="positionPage"><span class="ico">⌁</span>Position</button>
+ <button class="tab" data-page="holdingsPage"><span class="ico">▣</span>Holdings</button>
+</nav>
+<div class="toast" id="toast"></div>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+function loadArray(key,fallback){try{const v=JSON.parse(localStorage.getItem(key)||'null');return Array.isArray(v)?v:fallback}catch{return fallback}}
+let selectedIndex='NIFTY 50', tf='5m', candles=[], trades=loadArray('txTrades',[]), watch=loadArray('txWatch',['NIFTY 50','BANKNIFTY','SENSEX','RELIANCE','HDFCBANK','INFY','TCS']), enabled=new Set(['EMA 9','EMA 21','VWAP','S/R']);
+// Restore the last managed trade ID so the Position Manager can safely render after refresh.
+let lastManagedTradeId=localStorage.getItem('txLastManagedTradeId')||'';
+const indexData={'NIFTY 50':{price:23418.6,change:144.35,pct:.62,step:13},'BANKNIFTY':{price:51284.25,change:-92.1,pct:-.18,step:29},'SENSEX':{price:77612.4,change:239.2,pct:.31,step:42}};
+function fmt(n){return Number(n).toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function toast(t){const el=$('#toast');el.textContent=t;el.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.style.display='none',2600)}
+function seedCandles(){let base=indexData[selectedIndex].price-260;let prev=base;candles=[];for(let i=0;i<50;i++){let drift=(Math.sin(i*.32)*7)+(Math.cos(i*.12)*4)+(i*1.7-35)/3;let close=base+drift+(Math.sin(i*1.8)*11);let open=prev;let high=Math.max(open,close)+Math.random()*12+3;let low=Math.min(open,close)-Math.random()*12-3;candles.push({open,close,high,low});prev=close}let offset=indexData[selectedIndex].price-candles[candles.length-1].close;candles=candles.map(c=>({open:c.open+offset,close:c.close+offset,high:c.high+offset,low:c.low+offset}))}
+function drawChart(){let c=$('#chart'),ctx=c.getContext('2d'),rect=c.getBoundingClientRect(),dpr=window.devicePixelRatio||1;c.width=rect.width*dpr;c.height=rect.height*dpr;ctx.scale(dpr,dpr);let w=rect.width,h=rect.height;ctx.clearRect(0,0,w,h);let left=8,right=58,top=12,bottom=24,plotW=w-left-right,plotH=h-top-bottom;let min=Math.min(...candles.map(x=>x.low))-15,max=Math.max(...candles.map(x=>x.high))+15;const y=v=>top+(max-v)/(max-min)*plotH;ctx.font='10px system-ui';for(let i=0;i<5;i++){let yy=top+i*plotH/4;ctx.strokeStyle='#1c2939';ctx.beginPath();ctx.moveTo(left,yy);ctx.lineTo(w-right,yy);ctx.stroke();ctx.fillStyle='#7889a0';ctx.fillText(fmt(max-(max-min)*i/4),w-right+5,yy+3)}let gap=plotW/candles.length,cw=Math.max(3,gap*.52);candles.forEach((d,i)=>{let x=left+i*gap+gap/2;ctx.strokeStyle=d.close>=d.open?'#27dda0':'#ff5b70';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x,y(d.high));ctx.lineTo(x,y(d.low));ctx.stroke();ctx.fillStyle=d.close>=d.open?'#27dda0':'#ff5b70';let yy=y(Math.max(d.open,d.close)),hh=Math.max(1,Math.abs(y(d.open)-y(d.close)));ctx.fillRect(x-cw/2,yy,cw,hh)});function lineFor(key,color,period){if(!enabled.has(key))return;ctx.beginPath();ctx.strokeStyle=color;ctx.lineWidth=1.4;candles.forEach((d,i)=>{let start=Math.max(0,i-period+1),avg=candles.slice(start,i+1).reduce((a,b)=>a+b.close,0)/(i-start+1),x=left+i*gap+gap/2;if(i===0)ctx.moveTo(x,y(avg));else ctx.lineTo(x,y(avg))});ctx.stroke()}lineFor('EMA 9','#6ba7ff',9);lineFor('EMA 21','#b18bff',21);if(enabled.has('VWAP')){ctx.beginPath();ctx.setLineDash([4,4]);ctx.strokeStyle='#ffc66e';ctx.moveTo(left,y(indexData[selectedIndex].price-25));ctx.lineTo(w-right,y(indexData[selectedIndex].price-25));ctx.stroke();ctx.setLineDash([])}if(enabled.has('S/R')){ctx.setLineDash([5,4]);ctx.strokeStyle='#ff6d7d';ctx.beginPath();ctx.moveTo(left,y(indexData[selectedIndex].price+65));ctx.lineTo(w-right,y(indexData[selectedIndex].price+65));ctx.stroke();ctx.strokeStyle='#27dda0';ctx.beginPath();ctx.moveTo(left,y(indexData[selectedIndex].price-85));ctx.lineTo(w-right,y(indexData[selectedIndex].price-85));ctx.stroke();ctx.setLineDash([])}ctx.fillStyle='#8d9bb0';ctx.fillText(tf, left, h-5);ctx.fillText('09:15',left+4,h-5);ctx.fillText('15:30',w-right-33,h-5)}
+function updateIndex(){let d=indexData[selectedIndex];$('#chartTitle').innerHTML=selectedIndex+' <span class="muted">/ Index Chart</span>';$('#chartPrice').textContent=fmt(d.price);$('#chartChange').textContent=(d.change>0?'+':'')+fmt(d.change)+' ('+(d.pct>0?'+':'')+d.pct+'%)';$('#chartChange').className='change '+(d.change>=0?'up':'down');$('#chartStatus').textContent=tf+' · 50 candles';$('#entryLevel').textContent=fmt(d.price+7);$('#slLevel').textContent=fmt(d.price-35);$('#targetLevel').textContent=fmt(d.price+65);seedCandles();drawChart();makeOptions()}
+function makeOptions(){let d=indexData[selectedIndex],step=selectedIndex==='NIFTY 50'?50:selectedIndex==='BANKNIFTY'?100:100;let atm=Math.round(d.price/step)*step;let rows='';for(let i=-2;i<=2;i++){let strike=atm+i*step,ce=Math.max(8,Math.abs(d.price-strike)*.22+86-i*7),pe=Math.max(8,Math.abs(d.price-strike)*.2+83+i*7);rows+=`<tr><td class="ce">${fmt(ce)}</td><td>${(12800+i*1750).toLocaleString('en-IN')}</td><td class="strike">${strike.toLocaleString('en-IN')}</td><td>${(11700-i*1420).toLocaleString('en-IN')}</td><td class="pe">${fmt(pe)}</td></tr>`}$('#optionRows').innerHTML=rows}
+function renderWatch(){let q=($('#watchSearch')?.value||'').toUpperCase();$('#watchFull').innerHTML=watch.filter(x=>x.includes(q)).map(x=>{let d=indexData[x],price=d?fmt(d.price):({'RELIANCE':'1,428.50','HDFCBANK':'1,948.20','INFY':'1,612.75','TCS':'3,842.10'}[x]||'—'),pct=d?d.pct:(Math.random()>.5?.44:-.21);return `<div class="watchrow"><div><div class="symbol">${x}</div><div class="exchange">${d?(x==='SENSEX'?'BSE':'NSE'):'NSE'} · ${d?'Index':'Equity'}</div></div><div class="right"><div>${price}</div><div class="change ${pct>=0?'up':'down'}">${pct>=0?'+':''}${pct}%</div></div><button class="smallbtn removeWatch" data-symbol="${x}">×</button></div>`}).join('')||'<div class="empty">No symbols found.</div>'}
+function persist(){localStorage.setItem('txTrades',JSON.stringify(trades));localStorage.setItem('txWatch',JSON.stringify(watch))}
+function renderTrades(){
+ // Normalize older preview records so option and standard paper trades share one order book.
+ trades=trades.map(t=>{if(t.status==='OPEN')t.status='Open';if(t.status==='CLOSED')t.status='Closed';if(t.price!=null&&t.entry==null)t.entry=Number(t.price);if(t.symbol&&!t.instrument)t.instrument=t.symbol;if(t.current==null)t.current=Number(t.entry||t.price||0);if(t.highWater==null)t.highWater=Number(t.current||t.entry||0);if(t.initialSl==null)t.initialSl=Number(t.sl||0);if(t.target2==null)t.target2=0;if(t.target3==null)t.target3=0;if(t.pnl==null)t.pnl=0;if(!Array.isArray(t.milestones))t.milestones=[];if(t.trailing==null)t.trailing=false;return t});
+ let filter=$('#orderFilter')?.value||'All Orders',list=trades.filter(t=>filter==='All Orders'||t.status===filter);
+ $('#ordersTable').innerHTML=list.length?`<div class="tablewrap"><table><thead><tr><th>Instrument</th><th>Side</th><th>Qty</th><th>Entry</th><th>SL / T1</th><th>Status</th><th></th></tr></thead><tbody>${list.map(t=>`<tr><td>${t.instrument}</td><td class="${t.side==='BUY'?'ce':'pe'}">${t.side}</td><td>${t.qty}</td><td>₹${fmt(t.entry)}</td><td>₹${fmt(t.sl)} / ₹${fmt(t.target)}</td><td>${t.status}</td><td>${t.status==='Open'?`<button class="smallbtn closeTrade" data-id="${t.id}">Close</button>`:''}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">No paper orders yet. Create a virtual order from the Paper Trade ticket.</div>';
+ const opened=trades.filter(t=>t.status==='Open');$('#positionsTable').innerHTML=opened.length?`<div class="tablewrap"><table><thead><tr><th>Instrument</th><th>Entry</th><th>Current</th><th>SL</th><th>T1 / T2 / T3</th><th>Unreal. P&L</th><th></th></tr></thead><tbody>${opened.map(t=>{let cur=Number(t.current||t.entry),upnl=(t.side==='BUY'?cur-t.entry:t.entry-cur)*t.qty;return `<tr><td>${t.instrument}</td><td>₹${fmt(t.entry)}</td><td>₹${fmt(cur)}</td><td>₹${fmt(t.sl)}</td><td>₹${fmt(t.target)} / ₹${fmt(t.target2||0)} / ₹${fmt(t.target3||0)}</td><td class="${upnl>=0?'up':'down'}">₹${fmt(upnl)}</td><td><button class="smallbtn closeTrade" data-id="${t.id}">Exit</button></td></tr>`}).join('')}</tbody></table></div>`:'<div class="empty">No open positions. Create a paper trade to manage it here.</div>';
+ let closed=trades.filter(t=>t.status==='Closed'),pnl=closed.reduce((s,t)=>s+(t.pnl||0),0);$('#realisedPnl').textContent='₹'+fmt(pnl);$('#realisedPnl').className=pnl>=0?'up':'down';$('#openCount').textContent=opened.length;$('#winRate').textContent=closed.length?Math.round(closed.filter(t=>t.pnl>0).length/closed.length*100)+'%':'—';$('#holdingPnl').textContent='₹'+fmt(pnl);
+ const sel=$('#manageTrade');if(sel){let old=sel.value;const optionTrades=opened.filter(t=>t.kind==='OPTION PAPER'||/\b(CE|PE)\b/.test(t.instrument||''));sel.innerHTML=optionTrades.map(t=>`<option value="${t.id}">${t.instrument} · Entry ₹${fmt(t.entry)}</option>`).join('')||'<option value="">No open option positions</option>';if(optionTrades.some(t=>String(t.id)===String(old)))sel.value=old;else if(optionTrades.some(t=>String(t.id)===String(lastManagedTradeId)))sel.value=String(lastManagedTradeId);const selectedOpen=optionTrades.find(t=>String(t.id)===String(sel.value));if(selectedOpen){$('#managePremium').value=Number(selectedOpen.current??selectedOpen.entry);$('#manageTrailGap').value=String(selectedOpen.trailGap||5)}renderManagerResult()}
+ persist();drawPnl()
+}
+function renderManagerResult(){
+ const box=$('#managerResult');if(!box)return;
+ const selectedId=$('#manageTrade')?.value||lastManagedTradeId;
+ const t=trades.find(x=>String(x.id)===String(selectedId))||trades.find(x=>String(x.id)===String(lastManagedTradeId));
+ if(!t){box.innerHTML='<div class="empty" style="grid-column:1/-1">Select an open option paper trade to manage it here.</div>';return}
+ const hit=Array.isArray(t.milestones)?t.milestones:[],isClosed=t.status==='Closed';
+ const cur=Number(t.current??t.entry),upnl=isClosed?Number(t.pnl||0):((t.side==='SELL'?Number(t.entry)-cur:cur-Number(t.entry))*Number(t.qty));
+ const next=!(hit.includes('T1'))?t.target:!(hit.includes('T2'))?t.target2:!(hit.includes('T3'))?t.target3:null;
+ const progress=hit.includes('T3')?'T3 HIT':hit.includes('T2')?'T2 HIT':hit.includes('T1')?'T1 HIT':'Waiting for T1';
+ box.innerHTML=`<div class="metric"><small>${isClosed?'Realised P&L':'Current P&L'}</small><b class="${upnl>=0?'up':'down'}">₹${fmt(upnl)}</b></div><div class="metric"><small>${isClosed?'Final Stop-Loss':'Active Stop-Loss'}</small><b>₹${fmt(t.sl||t.initialSl||0)}</b></div><div class="metric"><small>Target progress</small><b>${isClosed?'CLOSED · '+(t.exitReason||'MANUAL EXIT'):progress}</b></div><div class="metric"><small>${isClosed?'Exit Premium':'Next Target'}</small><b>${isClosed?'₹'+fmt(t.exit??t.current):next?'₹'+fmt(next):'All targets hit'}</b></div><div class="metric"><small>Peak premium</small><b>₹${fmt(t.highWater||t.entry)}</b></div><div class="metric"><small>Trail status</small><b>${t.trailing?'Enabled':'Fixed SL'}</b></div>`;
+}
+
+function drawPnl(){
+ const c=$('#pnlChart'); if(!c) return;
+ const r=c.getBoundingClientRect();
+ // A hidden tab has a zero-size canvas. Defer drawing until the Position tab is visible.
+ if(r.width<20 || r.height<20) return;
+ const dpr=Math.max(1,window.devicePixelRatio||1);
+ c.width=Math.round(r.width*dpr); c.height=Math.round(r.height*dpr);
+ const ctx=c.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0);
+ const w=r.width,h=r.height;
+ ctx.clearRect(0,0,w,h);
+ ctx.fillStyle='#0d131d'; ctx.fillRect(0,0,w,h);
+ ctx.strokeStyle='#1c2939'; ctx.lineWidth=1;
+ for(let i=1;i<4;i++){const y=i*h/4;ctx.beginPath();ctx.moveTo(12,y);ctx.lineTo(w-12,y);ctx.stroke()}
+ // Plot only actual closed-trade P&L; no fabricated fallback values.
+ const closed=trades.filter(t=>t.status==='Closed').slice().reverse();
+ const vals=[0]; closed.forEach(t=>vals.push(vals[vals.length-1]+Number(t.pnl||0)));
+ if(!closed.length){ctx.fillStyle='#8493a8';ctx.font='12px system-ui';ctx.textAlign='center';ctx.fillText('No closed trades yet',w/2,h/2);return;}
+ let min=Math.min(...vals),max=Math.max(...vals);
+ if(min===max){min-=1;max+=1}else{const pad=(max-min)*.08;min-=pad;max+=pad}
+ const xx=i=>12+i*(w-24)/(vals.length-1), yy=v=>h-15-(v-min)/(max-min)*(h-30);
+ ctx.beginPath(); vals.forEach((v,i)=>i?ctx.lineTo(xx(i),yy(v)):ctx.moveTo(xx(i),yy(v)));
+ ctx.strokeStyle='#27dda0';ctx.lineWidth=2;ctx.stroke();
+ vals.forEach((v,i)=>{ctx.fillStyle='#27dda0';ctx.beginPath();ctx.arc(xx(i),yy(v),2.5,0,Math.PI*2);ctx.fill()});
+}
+$$('.tab').forEach(b=>b.addEventListener('click',()=>{ $$('.tab').forEach(x=>x.classList.toggle('active',x===b));$$('.page').forEach(p=>p.classList.toggle('active',p.id===b.dataset.page));if(b.dataset.page==='ordersPage'||b.dataset.page==='positionPage')renderTrades();if(b.dataset.page==='mylistPage')renderWatch();if(b.dataset.page==='homePage')setTimeout(drawChart,50);if(b.dataset.page==='positionPage')setTimeout(drawPnl,80);window.scrollTo({top:0,behavior:'smooth'})}));
+$$('.index').forEach(el=>el.addEventListener('click',()=>{$$('.index').forEach(x=>x.classList.toggle('active',x===el));selectedIndex=el.dataset.index;updateIndex()}));
+$('#timeframe').addEventListener('change',e=>{tf=e.target.value;$('#chartStatus').textContent=tf+' · 50 candles';seedCandles();drawChart()});
+$('#resetChart').addEventListener('click',()=>{seedCandles();drawChart();toast('Chart preview reset')});
+$$('.tag').forEach(b=>b.addEventListener('click',()=>{let k=b.dataset.ind;if(enabled.has(k)){enabled.delete(k);b.classList.remove('on')}else{enabled.add(k);b.classList.add('on')}drawChart();toast(k+' '+(enabled.has(k)?'enabled':'hidden'))}));
+$('#refreshBtn').addEventListener('click',()=>{for(let k in indexData){indexData[k].price+=((Math.random()-.5)*12);indexData[k].change+=((Math.random()-.5)*5);indexData[k].pct=+(indexData[k].change/indexData[k].price*100).toFixed(2)}$$('.index').forEach(el=>{let d=indexData[el.dataset.index];el.querySelector('.value').textContent=fmt(d.price);el.querySelector('.change').textContent=(d.change>=0?'▲ ':'▼ ')+Math.abs(d.pct)+'%';el.querySelector('.change').className='change '+(d.change>=0?'up':'down')});updateIndex();toast('Demo values refreshed (not live market data)')});
+$('#optionType').addEventListener('change',e=>{$$('#optionRows tr').forEach(row=>{row.style.display='';if(e.target.value==='Calls (CE)'){row.children[3].style.opacity='.3';row.children[4].style.opacity='.3'}else if(e.target.value==='Puts (PE)'){row.children[0].style.opacity='.3';row.children[1].style.opacity='.3'}})});
+$('#viewOptions').addEventListener('click',()=>{document.querySelector('.twocol').scrollIntoView({behavior:'smooth'});toast('Options chain is shown below the chart')});
+function openTicket(instrument=selectedIndex){$('#tradeInstrument').value=instrument;$$('.tab').forEach(x=>x.classList.remove('active'));$$('.page').forEach(x=>x.classList.remove('active'));$('#paperPage').classList.add('active');window.scrollTo({top:0,behavior:'smooth'});updateRR()}
+$('#paperBuy').addEventListener('click',()=>openTicket(selectedIndex));
+['tradeEntry','tradeSL','tradeTarget'].forEach(id=>$('#'+id).addEventListener('input',updateRR));
+function updateRR(){let e=+$('#tradeEntry').value,s=+$('#tradeSL').value,t=+$('#tradeTarget').value,risk=Math.abs(e-s),reward=Math.abs(t-e);$('#riskReward').value=risk>0?'1 : '+(reward/risk).toFixed(2):'—'}
+$('#createTrade').addEventListener('click',()=>{let instrument=$('#tradeInstrument').value,side=$('#tradeSide').value,qty=+$('#tradeQty').value,entry=+$('#tradeEntry').value,sl=+$('#tradeSL').value,target=+$('#tradeTarget').value;if(!(qty>0&&entry>0&&sl>0&&target>0)){toast('Please enter valid quantity and prices');return}if(instrument.includes('CE')||instrument.includes('PE')){let pct=Math.abs(entry-sl)/entry*100;if(pct>15){toast('Options SL exceeds the 15% maximum. Adjust SL.');return}}if((side==='BUY'&&!(sl<entry&&target>entry))||(side==='SELL'&&!(sl>entry&&target<entry))){toast('Check SL and target relative to entry price');return}trades.unshift({id:Date.now(),instrument,side,qty,entry,price:entry,current:entry,highWater:entry,initialSl:sl,sl,target,target2:0,target3:0,trailing:false,trailGap:5,status:'Open',created:new Date().toISOString(),pnl:0});persist();renderTrades();toast('Virtual paper order created');$$('.tab').forEach(x=>x.classList.toggle('active',x.dataset.page==='ordersPage'));$$('.page').forEach(p=>p.classList.toggle('active',p.id==='ordersPage'));window.scrollTo({top:0,behavior:'smooth'})});
+document.addEventListener('click',e=>{let close=e.target.closest('.closeTrade');if(close){let t=trades.find(t=>t.id==close.dataset.id);if(t){let exit=prompt('Enter virtual exit price / premium (₹):',String(t.current||t.target));if(exit===null)return;exit=+exit;if(!(exit>0)){toast('Invalid exit price');return}t.pnl=(t.side==='BUY'?exit-t.entry:t.entry-exit)*t.qty;t.exit=exit;t.current=exit;t.status='Closed';t.exitReason='MANUAL EXIT';t.closedAt=new Date().toISOString();lastManagedTradeId=String(t.id);localStorage.setItem('txLastManagedTradeId',lastManagedTradeId);persist();renderTrades();toast('Paper position closed. P&L: ₹'+fmt(t.pnl))}}let rem=e.target.closest('.removeWatch');if(rem){watch=watch.filter(x=>x!==rem.dataset.symbol);persist();renderWatch()}});
+function addSymbol(){let s=prompt('Enter symbol (e.g. SBIN):');if(!s)return;s=s.trim().toUpperCase();if(!watch.includes(s))watch.push(s);persist();renderWatch();toast(s+' added to watchlist')}
+$('#addWatch').addEventListener('click',addSymbol);$('#addWatch2').addEventListener('click',addSymbol);$('#watchSearch').addEventListener('input',renderWatch);$('#orderFilter').addEventListener('change',renderTrades);$('#resetTrades').addEventListener('click',()=>{if(confirm('Delete all local demo paper trades?')){trades=[];lastManagedTradeId='';localStorage.removeItem('txLastManagedTradeId');persist();renderTrades();$('#managerAlert').style.display='none';toast('Paper trade history reset')}})
+window.addEventListener('resize',()=>{drawChart();drawPnl()});
+
+function meanClose(end,period){let start=Math.max(0,end-period+1),arr=candles.slice(start,end+1);return arr.reduce((sum,c)=>sum+c.close,0)/arr.length}
+function runBacktest(){
+ const capital=Number($('#btCapital').value),riskPct=Number($('#btRisk').value),strategy=$('#btStrategy').value;
+ if(!(capital>=1000)||!(riskPct>=0.25&&riskPct<=2)){toast('Capital must be ≥ ₹1,000 and risk must be 0.25–2%');return}
+ if(candles.length<25){toast('Not enough candles to test');return}
+ let cash=capital,peak=capital,maxDD=0,closed=[],position=null,tradeNo=0;
+ for(let i=22;i<candles.length-1;i++){
+  const c=candles[i],prev=candles[i-1],fast=meanClose(i,9),slow=meanClose(i,21),pf=meanClose(i-1,9),ps=meanClose(i-1,21);
+  let side=null;
+  if(strategy==='ema'){if(pf<=ps&&fast>slow&&c.close>c.open)side='BUY';else if(pf>=ps&&fast<slow&&c.close<c.open)side='SELL'}
+  else {const recent=candles.slice(Math.max(0,i-10),i);const hi=Math.max(...recent.map(x=>x.high)),lo=Math.min(...recent.map(x=>x.low));if(c.close>hi&&c.close>fast)side='BUY';else if(c.close<lo&&c.close<fast)side='SELL'}
+  if(position){
+   const next=candles[i+1];let exit=null,reason='';
+   if(position.side==='BUY'&&next.low<=position.sl){exit=position.sl;reason='Stop-loss'}
+   else if(position.side==='SELL'&&next.high>=position.sl){exit=position.sl;reason='Stop-loss'}
+   else if(position.side==='BUY'&&next.high>=position.target){exit=position.target;reason='Target'}
+   else if(position.side==='SELL'&&next.low<=position.target){exit=position.target;reason='Target'}
+   else if(i-position.entryIndex>=7){exit=next.close;reason='Time exit'}
+   if(exit!==null){const pnl=(position.side==='BUY'?exit-position.entry:position.entry-exit)*position.qty;cash+=pnl;closed.push({...position,exit,pnl,reason});position=null;peak=Math.max(peak,cash);maxDD=Math.max(maxDD,peak?((peak-cash)/peak)*100:0)}
+  }
+  if(!position&&side){
+   const entry=candles[i+1].open, riskDistance=entry*0.012, riskAmount=cash*riskPct/100, qty=Math.max(1,Math.floor(riskAmount/riskDistance));
+   position={side,entry,sl:side==='BUY'?entry-riskDistance:entry+riskDistance,target:side==='BUY'?entry+riskDistance*1.5:entry-riskDistance*1.5,qty,entryIndex:i+1,signalIndex:i};
+  }
+ }
+ if(position){const exit=candles[candles.length-1].close,pnl=(position.side==='BUY'?exit-position.entry:position.entry-exit)*position.qty;cash+=pnl;closed.push({...position,exit,pnl,reason:'End of data'})}
+ const wins=closed.filter(t=>t.pnl>0),grossWin=wins.reduce((a,t)=>a+t.pnl,0),grossLoss=Math.abs(closed.filter(t=>t.pnl<0).reduce((a,t)=>a+t.pnl,0)),net=cash-capital;
+ $('#btResults').style.display='block';$('#btTrades').textContent=closed.length;$('#btWin').textContent=closed.length?Math.round(wins.length/closed.length*100)+'%':'—';$('#btPnl').textContent=(net>=0?'+':'−')+'₹'+fmt(Math.abs(net));$('#btPnl').className=net>=0?'up':'down';$('#btPF').textContent=grossLoss? (grossWin/grossLoss).toFixed(2):grossWin?'∞':'—';$('#btDD').textContent=maxDD.toFixed(2)+'%';$('#btEnd').textContent='₹'+fmt(cash);
+ $('#btTable').innerHTML=closed.length?'<div class="tablewrap"><table><thead><tr><th>#</th><th>Side</th><th>Entry</th><th>Exit</th><th>Qty</th><th>P&L</th><th>Exit reason</th></tr></thead><tbody>'+closed.slice().reverse().map((t,j)=>`<tr><td>${closed.length-j}</td><td class="${t.side==='BUY'?'ce':'pe'}">${t.side}</td><td>${fmt(t.entry)}</td><td>${fmt(t.exit)}</td><td>${t.qty}</td><td class="${t.pnl>=0?'ce':'pe'}">${t.pnl>=0?'+':'−'}${fmt(Math.abs(t.pnl))}</td><td>${t.reason}</td></tr>`).join('')+'</tbody></table></div>':'<div class="empty">No entries matched this strategy on the demo candles. Try the other rule.</div>';
+ toast('Backtest complete on simulated candles');
+}
+$('#runBacktest').addEventListener('click',runBacktest);
+
+
+function fillOptionStrikes(){
+ const u=$('#optUnderlying').value,step=u==='NIFTY 50'?50:100,spot=indexData[u].price,atm=Math.round(spot/step)*step,sel=$('#optStrike'),old=Number(sel.value);
+ sel.innerHTML='';for(let k=-5;k<=5;k++){const strike=atm+k*step,o=document.createElement('option');o.value=strike;o.textContent=strike.toLocaleString('en-IN')+(strike===atm?' · ATM':Math.abs(k)===1?' · near ATM':'');sel.appendChild(o)}
+ if([...sel.options].some(o=>Number(o.value)===old))sel.value=String(old);
+}
+function analyzeOption(){
+ const u=$('#optUnderlying').value,type=$('#optType').value,strike=Number($('#optStrike').value),premium=Number($('#optPremium').value),qty=Number($('#optQty').value),spot=indexData[u].price;
+ if(!(premium>0)||!(qty>0)||!Number.isFinite(qty)||!Number.isInteger(qty)){toast('Enter a valid premium and whole-number quantity');return}
+ const step=u==='NIFTY 50'?50:100,atm=Math.round(spot/step)*step,dist=Math.abs(strike-atm)/step;
+ const trend=candles.length?candles.slice(-8).reduce((a,c)=>a+c.close-c.open,0):0;
+ const trendAligned=(type==='CE'&&trend>0)||(type==='PE'&&trend<0);
+ const atmScore=Math.max(0,30-dist*10),trendScore=trendAligned?25:8,expiryScore=$('#optExpiry').value==='near'?12:8,premiumScore=premium<50?10:premium<=250?20:premium<=500?14:6;
+ const score=Math.min(100,Math.round(20+atmScore+trendScore+expiryScore+premiumScore));
+ const sl=+(premium*0.85).toFixed(2),riskUnit=premium-sl,target=+(premium+riskUnit*1.5).toFixed(2),target2=+(premium+riskUnit*2.5).toFixed(2),target3=+(premium+riskUnit*3.5).toFixed(2),trailStart=target,trailGap=Number($('#trailGap').value),trailAfter=+(Math.max(sl,target*(1-trailGap/100))).toFixed(2),risk=(premium-sl)*qty,reward=(target-premium)*qty;
+ $('#optAnalysis').style.display='block';$('#optScore').textContent=score+'/100';$('#optBias').textContent=trendAligned?'Aligned':'Mixed';$('#optBias').className=trendAligned?'up':'';
+ $('#optRiskUnit').textContent='₹'+fmt(riskUnit);$('#optEntry').textContent='₹'+fmt(premium);$('#optSL').textContent='₹'+fmt(sl);$('#optTarget').textContent='₹'+fmt(target);$('#optMaxLoss').textContent='₹'+fmt(risk);$('#optTargetProfit').textContent='₹'+fmt(reward);$('#optPremiumScore').textContent=premiumScore+'/20';
+ $('#optTarget2').textContent='₹'+fmt(target2);$('#optTarget3').textContent='₹'+fmt(target3);$('#trailStart').textContent='₹'+fmt(target);$('#trailInitial').textContent='₹'+fmt(sl);$('#trailAfter').textContent=$('#trailEnabled').checked?'₹'+fmt(trailAfter):'Disabled';$('#trailAction').textContent=$('#trailEnabled').checked?'Trail after T1':'Fixed SL';
+ $('#optReason').textContent=`${u} ${strike} ${type}: strike is ${dist===0?'ATM':dist.toFixed(0)+' step(s) from ATM'}. Recent simulated candle momentum is ${trendAligned?'aligned':'not clearly aligned'} with this option direction. Score is a transparent demo heuristic, not a probability of profit.`;
+ $('#optPaperTrade').dataset.trade=JSON.stringify({symbol:`${u} ${strike} ${type}`,side:'BUY',price:premium,qty,sl,target,target2,target3,trailing:$('#trailEnabled').checked,trailGap,trailStart,trailAfter,score});
+}
+$('#optUnderlying').addEventListener('change',fillOptionStrikes);
+$('#optType').addEventListener('change',()=>{$('#optAnalysis').style.display='none'});
+$('#optStrike').addEventListener('change',()=>{$('#optAnalysis').style.display='none'});
+['trailEnabled','trailGap'].forEach(id=>$('#'+id).addEventListener('change',()=>{if($('#optAnalysis').style.display!=='none')analyzeOption()}));
+$('#analyzeOption').addEventListener('click',analyzeOption);
+$('#resetOption').addEventListener('click',()=>{$('#optPremium').value=120;$('#optQty').value=65;$('#optAnalysis').style.display='none';fillOptionStrikes()});
+$('#optPaperTrade').addEventListener('click',()=>{let t;try{t=JSON.parse($('#optPaperTrade').dataset.trade||'null')}catch{}if(!t){toast('Analyze the setup first');return}trades.unshift({id:Date.now(),symbol:t.symbol,instrument:t.symbol,side:'BUY',price:t.price,entry:t.price,current:t.price,highWater:t.price,qty:t.qty,sl:t.sl,initialSl:t.sl,target:t.target,target2:t.target2,target3:t.target3,trailing:t.trailing,trailGap:t.trailGap,trailStart:t.trailStart,trailAfter:t.trailAfter,status:'Open',pnl:0,kind:'OPTION PAPER',milestones:[]});persist();renderTrades();toast('Added to Paper Trading — virtual only');document.querySelector('.tab[data-page="positionPage"]').click()});
+
+$('#manageTrade')?.addEventListener('change',()=>{const t=trades.find(x=>String(x.id)===$('#manageTrade').value&&x.status==='Open');if(t){lastManagedTradeId=String(t.id);localStorage.setItem('txLastManagedTradeId',lastManagedTradeId);$('#managePremium').value=Number(t.current??t.entry);$('#manageTrailGap').value=String(t.trailGap||5);$('#managerAlert').style.display='none';renderManagerResult()}});
+$('#updatePremium')?.addEventListener('click',()=>{
+ const t=trades.find(x=>String(x.id)===$('#manageTrade').value&&x.status==='Open');
+ const cur=Number($('#managePremium').value);
+ if(!t){toast('Create an open option paper trade first');return}
+ if(!(cur>0)||!Number.isFinite(cur)){toast('Enter a valid simulated premium');return}
+ lastManagedTradeId=String(t.id);localStorage.setItem('txLastManagedTradeId',lastManagedTradeId);
+ const oldSL=Number(t.sl||t.initialSl||0);
+ // Persisted invariants: peak premium never decreases and a long-option trailing SL never moves down.
+ t.lastQuote=cur;t.highWater=Math.max(Number(t.highWater||t.entry),cur);t.trailGap=Number($('#manageTrailGap').value);t.milestones=Array.isArray(t.milestones)?t.milestones:[];
+ let events=[];
+ for(const [name,level] of [['T1',Number(t.target||0)],['T2',Number(t.target2||0)],['T3',Number(t.target3||0)]]){
+   if(level>0&&cur>=level&&!t.milestones.includes(name)){t.milestones.push(name);events.push(name+' TARGET HIT');}
+ }
+ if(t.trailing&&t.milestones.includes('T1')){
+   const candidate=+(t.highWater*(1-t.trailGap/100)).toFixed(2);
+   t.sl=+Math.max(Number(t.initialSl||oldSL),oldSL,candidate).toFixed(2);
+   if(t.sl>oldSL)events.push('TRAILING SL MOVED UP');
+ }
+ const side=t.side||'BUY',qty=Number(t.qty),entry=Number(t.entry);
+ let exitReason='',exitPrice=null;
+ // In this manual simulator, a crossed stop is filled at the stop level; real fills can differ due to gaps/slippage.
+ if(cur<=Number(t.sl||0)) {exitReason='STOP-LOSS HIT';exitPrice=Number(t.sl);}
+ else if(Number(t.target3)>0&&cur>=Number(t.target3)&&t.milestones.includes('T3')) {exitReason='T3 TARGET HIT';exitPrice=Number(t.target3);}
+ if(exitReason){
+   t.exit=+exitPrice.toFixed(2);t.current=t.exit;t.pnl=+((side==='SELL'?entry-t.exit:t.exit-entry)*qty).toFixed(2);t.status='Closed';t.exitReason=exitReason;t.closedAt=new Date().toISOString();events.push(exitReason+' · paper position closed');
+ } else {t.current=cur;}
+ const livePnl=(side==='SELL'?entry-cur:cur-entry)*qty;
+ persist();renderTrades();renderManagerResult();
+ const alert=$('#managerAlert');
+ if(alert){alert.style.display='block';alert.style.borderColor=exitReason?'#ff6678':'#2a765e';alert.style.background=exitReason?'#2a121b':'#10251f';alert.innerHTML='<b>'+(events.length?'🔔 '+events.join(' · '):'Premium updated')+'</b><br>Quote ₹'+fmt(cur)+' · '+(exitReason?'Exit ₹'+fmt(t.exit)+' · Realised P&L ₹'+fmt(t.pnl):'Unrealised P&L ₹'+fmt(livePnl))+' · Active SL ₹'+fmt(t.sl)+(exitReason?'<br><b>Exit reason:</b> '+exitReason:'');}
+ toast(exitReason||events.join(' · ')||('Demo premium updated · P&L ₹'+fmt(livePnl)));
+});
+fillOptionStrikes();
+updateIndex();renderWatch();renderTrades();
+requestAnimationFrame(()=>setTimeout(drawPnl,80));
+</script>
+</body>
+</html>
